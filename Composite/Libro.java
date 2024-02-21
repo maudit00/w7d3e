@@ -43,12 +43,6 @@ public class Libro {
                 '}';
     }
 
-    public void printBook(){
 
-    }
-
-    public void getPagesCount(){
-        sezioni.stream().forEach(sezioni -> );
-    }
 
 }
