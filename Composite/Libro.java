@@ -2,20 +2,29 @@ package Composite;
 
 import java.util.List;
 
-public class Libro {
-    private List<Sezioni> sezioni;
+public class Libro extends ComponenteLibro {
+    private List<ComponenteLibro> componenti;
     private List<Autori> autori;
     private double price;
+
+    private String nome;
 
     public Libro() {
     }
 
-    public List<Sezioni> getSezioni() {
-        return sezioni;
+    public Libro(List<ComponenteLibro> componenti, List<Autori> autori, double price, String nome) {
+        this.componenti = componenti;
+        this.autori = autori;
+        this.price = price;
+        this.nome = nome;
     }
 
-    public void setSezioni(List<Sezioni> sezioni) {
-        this.sezioni = sezioni;
+    public List<ComponenteLibro> getComponenti() {
+        return componenti;
+    }
+
+    public void setComponenti(List<ComponenteLibro> componenti) {
+        this.componenti = componenti;
     }
 
     public List<Autori> getAutori() {
@@ -34,15 +43,16 @@ public class Libro {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Libro{" +
-                "sezioni=" + sezioni+
-                ", autori=" + autori +
-                ", price=" + price +
-                '}';
+    public String getNome() {
+        return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-
+    @Override
+    public int getPagesNumber() {
+        return componenti.stream().mapToInt(componente -> componente.getPagesNumber()).sum();
+    }
 }

@@ -4,24 +4,29 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Libro libro = new Libro();
-        libro.setPrice(20);
-        libro.setAutori(List.of(new Autori("Tolkien")));
         Pagine p1 = new Pagine();
-        p1.setContenuto("ciaociao");
-        p1.setnPagina(1);
-        SezioneIndice indice = new SezioneIndice();
-        indice.setPagine(List.of(p1));
-        indice.setTitolo("indice");
-        SezioneIntroduzione introduzione = new SezioneIntroduzione();
-        introduzione.setSezioni(List.of(indice));
-        introduzione.setTitolo("introduzione");
-        libro.setSezioni(List.of(introduzione));
+        Pagine p2 = new Pagine();
+        Pagine p3 = new Pagine();
+        Pagine p4 = new Pagine();
+        Pagine p5 = new Pagine();
+        Pagine p6 = new Pagine();
+        Pagine p7 = new Pagine();
 
-        System.out.println(libro);
-        System.out.println(introduzione);
-        System.out.println(indice);
-        System.out.println(p1);
+        Autori autore = new Autori("Mario");
 
+        Sezioni sottoSezione1 = new Sezioni(List.of(p1, p2));
+        Sezioni sottoSezione2 = new Sezioni(List.of(p3, p4));
+        Sezioni sottoSezione3 = new Sezioni(List.of(p5, p6));
+
+        Sezioni sezione1 = new Sezioni(List.of(sottoSezione1, sottoSezione2));
+        Sezioni sezione2 = new Sezioni(List.of(sottoSezione3, p7));
+
+        Libro l1 = new Libro(List.of(sezione1),List.of(autore),20,"harry potter");
+
+        System.out.println(l1.getPagesNumber());
+
+        System.out.println(sezione1.getPagesNumber());
+        System.out.println(sezione2.getPagesNumber());
+        System.out.println( sottoSezione2.getPagesNumber());
     }
 }
